@@ -12,6 +12,10 @@ final class SessionStore {
     private static final String KEY_SECONDS = "seconds";
     private static final String KEY_USER_AGENT_INDEX = "user_agent_index";
     private static final String KEY_STREAM_URL = "stream_url";
+    private static final String KEY_START_COUNT = "start_count";
+    private static final String KEY_STAR_PROMPT_DISMISSED = "star_prompt_dismissed";
+
+    static final String GITHUB_URL = "https://github.com/hserver71/Channel_Tracer";
 
     static final class Session {
         final String host;
@@ -63,6 +67,21 @@ final class SessionStore {
                 .putInt(KEY_USER_AGENT_INDEX, userAgentIndex)
                 .putString(KEY_STREAM_URL, streamUrl)
                 .apply();
+    }
+
+    static int incrementStartCount(Context context) {
+        SharedPreferences prefs = prefs(context);
+        int count = prefs.getInt(KEY_START_COUNT, 0) + 1;
+        prefs.edit().putInt(KEY_START_COUNT, count).apply();
+        return count;
+    }
+
+    static boolean isStarPromptDismissed(Context context) {
+        return prefs(context).getBoolean(KEY_STAR_PROMPT_DISMISSED, false);
+    }
+
+    static void setStarPromptDismissed(Context context, boolean dismissed) {
+        prefs(context).edit().putBoolean(KEY_STAR_PROMPT_DISMISSED, dismissed).apply();
     }
 
     private static SharedPreferences prefs(Context context) {

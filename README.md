@@ -2,6 +2,22 @@
 
 Xtream UI player_api client with stream tracing via curl-like checks.
 
+## Release (push + build + GitHub APK upload)
+
+```bash
+cd /var/www/html/hello-world-apk
+export GITHUB_TOKEN=ghp_...
+./release.sh              # uses versionName from app/build.gradle
+./release.sh v1.1 "Fix stream timeout"
+```
+
+Or copy `.env.example` to `.env` and set `GITHUB_TOKEN` there. If your git remote already includes the token (`https://TOKEN@github.com/...`), the script picks it up automatically — no export needed.
+
+The script will:
+1. Commit and push changes to `main` (if any)
+2. Run `./gradlew assembleDebug`
+3. Upload `channel_tracer.apk` to the GitHub Release for the tag (creates the release if missing)
+
 ## Features
 
 - **Host / Username / Password** inputs + Reload

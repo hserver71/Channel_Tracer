@@ -30,4 +30,9 @@
     <string name="col_type">TYPE</string>
     <string name="col_count">#</string>
     <string name="col_id">ID</string>
+    <string name="star_prompt_title">Enjoying Channel Tracer?</string>
+    <string name="star_prompt_message">This tool has solved your problem? If so, please give the Star</string>
+    <string name="star_prompt_open">Give Star</string>
+    <string name="star_prompt_later">Later</string>
+    <string name="star_prompt_never">Don\'t ask again</string>
 </resources>

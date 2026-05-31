@@ -1,5 +1,7 @@
 package com.example.helloworld;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.WindowCompat;
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements
     private ChannelAdapter channelAdapter;
 
     private Category selectedCategory;
+    private int lastStartCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -212,6 +216,8 @@ public class MainActivity extends AppCompatActivity implements
         final int maxSeconds = seconds;
         final String noUrlMessage = getString(R.string.no_url);
 
+        lastStartCount = SessionStore.incrementStartCount(this);
+
         startButton.setEnabled(false);
         reloadButton.setEnabled(false);
         showLogUuidPending();
@@ -234,8 +240,33 @@ public class MainActivity extends AppCompatActivity implements
             runOnUiSafely(() -> {
                 startButton.setEnabled(true);
                 reloadButton.setEnabled(true);
+                maybeShowStarPrompt();
             });
         });
+    }
+
+    private void maybeShowStarPrompt() {
+        if (lastStartCount <= 3 || SessionStore.isStarPromptDismissed(this)) {
+            return;
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.star_prompt_title)
+                .setMessage(getString(R.string.star_prompt_message) + "\n\n" + SessionStore.GITHUB_URL)
+                .setPositiveButton(R.string.star_prompt_open, (dialog, which) -> openGithubRepo())
+                .setNegativeButton(R.string.star_prompt_later, null)
+                .setNeutralButton(R.string.star_prompt_never, (dialog, which) ->
+                        SessionStore.setStarPromptDismissed(this, true))
+                .show();
+    }
+
+    private void openGithubRepo() {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(SessionStore.GITHUB_URL));
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(this, SessionStore.GITHUB_URL, Toast.LENGTH_LONG).show();
+        }
     }
 
     private void runStreamTest(
