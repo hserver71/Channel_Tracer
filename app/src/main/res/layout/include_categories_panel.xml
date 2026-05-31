@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/panel_border"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/panel_header_bg"
+        android:paddingHorizontal="@dimen/spacing_sm"
+        android:paddingVertical="@dimen/panel_header_padding_v"
+        android:text="@string/categories"
+        android:textColor="@color/text_muted"
+        android:textSize="@dimen/text_label"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/categorySearch"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:layout_marginHorizontal="@dimen/spacing_xs"
+        android:layout_marginVertical="@dimen/spacing_xs"
+        android:background="@drawable/input_field"
+        android:hint="@string/search_hint"
+        android:inputType="text"
+        android:paddingHorizontal="@dimen/spacing_sm"
+        android:singleLine="true"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_muted"
+        android:textSize="@dimen/text_small" />
+
+    <include layout="@layout/include_table_header_category" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoryList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:overScrollMode="ifContentScrolls"
+        android:scrollbars="vertical" />
+</LinearLayout>

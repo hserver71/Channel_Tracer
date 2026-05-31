@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:baselineAligned="false"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_sm">
+
+    <include layout="@layout/include_credentials" />
+
+    <!-- Browse: categories | channels side by side -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:layout_weight="1"
+        android:baselineAligned="false"
+        android:minHeight="180dp"
+        android:orientation="horizontal">
+
+        <include
+            layout="@layout/include_categories_panel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/spacing_xs"
+            android:layout_weight="1" />
+
+        <include
+            layout="@layout/include_channels_panel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <!-- Debug stack -->
+    <include
+        layout="@layout/include_controls_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_sm" />
+
+    <include
+        layout="@layout/include_stream_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_sm" />
+
+    <include
+        layout="@layout/include_log_uuid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_sm" />
+
+    <include
+        layout="@layout/include_debug_panel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:layout_weight="1"
+        android:minHeight="140dp" />
+</LinearLayout>

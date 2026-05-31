@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="panel_padding">4dp</dimen>
+    <dimen name="input_height">26dp</dimen>
+    <dimen name="button_height">26dp</dimen>
+    <dimen name="text_body">10sp</dimen>
+    <dimen name="text_small">9sp</dimen>
+    <dimen name="text_mono">10sp</dimen>
+</resources>

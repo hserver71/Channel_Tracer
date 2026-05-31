@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spacing_xs">2dp</dimen>
+    <dimen name="spacing_sm">3dp</dimen>
+    <dimen name="spacing_md">4dp</dimen>
+    <dimen name="panel_padding">3dp</dimen>
+    <dimen name="input_height">24dp</dimen>
+    <dimen name="button_height">24dp</dimen>
+    <dimen name="button_padding_h">6dp</dimen>
+    <dimen name="text_caption">8sp</dimen>
+    <dimen name="text_label">8sp</dimen>
+    <dimen name="text_body">9sp</dimen>
+    <dimen name="text_small">8sp</dimen>
+    <dimen name="text_tiny">8sp</dimen>
+    <dimen name="text_mono">9sp</dimen>
+    <dimen name="table_row_padding_v">1dp</dimen>
+    <dimen name="table_row_min_height">20dp</dimen>
+    <dimen name="col_type_width">32dp</dimen>
+    <dimen name="col_count_width">22dp</dimen>
+    <dimen name="col_id_width">44dp</dimen>
+    <dimen name="col_check_width">22dp</dimen>
+    <dimen name="panel_header_padding_v">2dp</dimen>
+    <dimen name="button_radius">3dp</dimen>
+</resources>

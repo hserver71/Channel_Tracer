@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_dark">#0a0812</color>
+    <color name="panel_bg">#12101c</color>
+    <color name="panel_header">#1a1628</color>
+    <color name="panel_border">#322c48</color>
+    <color name="input_bg">#0e0c16</color>
+    <color name="text_primary">#f0ecf8</color>
+    <color name="text_muted">#9a94ad</color>
+    <color name="accent_teal">#22b8a6</color>
+    <color name="accent_teal_dark">#1a9688</color>
+    <color name="row_selected">#22b8a6</color>
+    <color name="row_selected_text">#ffffff</color>
+    <color name="divider">#2a2340</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="btn_secondary_border">#4a4268</color>
+    <color name="debug_bg">#06050c</color>
+    <color name="debug_timestamp_bg">#f0c040</color>
+    <color name="debug_timestamp_text">#1a1400</color>
+    <color name="debug_url_bg">#9fda55</color>
+    <color name="debug_url_text">#1a2608</color>
+    <color name="debug_request">#7eb8da</color>
+    <color name="debug_response">#98d982</color>
+    <color name="debug_command">#c9a0e0</color>
+    <color name="debug_info">#ece8f5</color>
+    <color name="debug_muted">#6b6580</color>
+    <color name="debug_error">#f07178</color>
+    <color name="debug_result">#1dd1a1</color>
+</resources>

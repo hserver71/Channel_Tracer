@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/panel_border"
+    android:orientation="vertical"
+    android:padding="@dimen/panel_padding">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/log_uuid_label"
+        android:textColor="@color/text_muted"
+        android:textSize="@dimen/text_caption"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/logUuidText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:fontFamily="monospace"
+        android:paddingHorizontal="@dimen/spacing_xs"
+        android:paddingVertical="1dp"
+        android:singleLine="true"
+        android:ellipsize="middle"
+        android:text="@string/log_uuid_hint"
+        android:textColor="@color/debug_result"
+        android:textIsSelectable="true"
+        android:textSize="@dimen/text_small" />
+</LinearLayout>
