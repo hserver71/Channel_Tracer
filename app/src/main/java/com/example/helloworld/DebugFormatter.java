@@ -20,6 +20,8 @@ final class DebugFormatter {
     private static final Pattern IPV4 = Pattern.compile("\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b");
     private static final Pattern URL_HOST = Pattern.compile("(?<=://)([^/:\\s?#]+)");
     private static final Pattern HOST_HEADER = Pattern.compile("(?<=Host: )([^\\s/]+)");
+    private static final Pattern RESOLVE_HOST = Pattern.compile("(?<=\\()([^)]+)(?=\\))");
+    private static final Pattern IP_LINE = Pattern.compile("(?<=\\* IP )(?:\\d{1,3}\\.){3}\\d{1,3}");
     private static final Pattern CONNECT_MS = Pattern.compile("\\(\\d+ ms\\)");
 
     private DebugFormatter() {
@@ -82,6 +84,8 @@ final class DebugFormatter {
 
         highlightPattern(builder, line, lineStart, HOST_HEADER, domainBg, domainFg);
         highlightPattern(builder, line, lineStart, URL_HOST, domainBg, domainFg);
+        highlightPattern(builder, line, lineStart, RESOLVE_HOST, domainBg, domainFg);
+        highlightPattern(builder, line, lineStart, IP_LINE, ipBg, ipFg);
         highlightIpv4(builder, line, lineStart, ipBg, ipFg);
 
         Matcher connectMs = CONNECT_MS.matcher(line);

@@ -3,6 +3,7 @@ package com.example.helloworld;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.URI;
@@ -52,8 +53,16 @@ final class StreamTester {
         Result result = null;
         try {
             while (remainingMs(overallStart, maxDurationMs) > 0) {
-                emit(listener, overallStart, "* Trying " + currentUrl + "...");
                 URL url = new URL(currentUrl);
+                String host = url.getHost();
+                int port = url.getPort();
+                if (port < 0) {
+                    port = url.getDefaultPort();
+                }
+
+                String ip = resolveHostIp(listener, overallStart, host);
+
+                emit(listener, overallStart, "* Trying " + ip + ":" + port + "...");
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setInstanceFollowRedirects(false);
                 conn.setRequestMethod("GET");
@@ -64,7 +73,9 @@ final class StreamTester {
 
                 long connectStart = System.currentTimeMillis();
                 conn.connect();
-                emit(listener, overallStart, "* Connected (" + (System.currentTimeMillis() - connectStart) + " ms)");
+                emit(listener, overallStart,
+                        "* Connected to " + host + " (" + ip + ") port " + port
+                                + " (" + (System.currentTimeMillis() - connectStart) + " ms)");
 
                 logRequestHeaders(listener, overallStart, conn, userAgent);
 
@@ -200,6 +211,24 @@ final class StreamTester {
             abortConnection(conn);
         }
         return result;
+    }
+
+    private static String resolveHostIp(ProgressListener listener, long traceStart, String host) {
+        if (host == null || host.isEmpty()) {
+            return host;
+        }
+        if (host.matches("^(?:\\d{1,3}\\.){3}\\d{1,3}$")) {
+            emit(listener, traceStart, "* IP " + host);
+            return host;
+        }
+        try {
+            String ip = InetAddress.getByName(host).getHostAddress();
+            emit(listener, traceStart, "* IP " + ip + " (" + host + ")");
+            return ip;
+        } catch (IOException e) {
+            emit(listener, traceStart, "* Resolve " + host + " failed: " + e.getMessage());
+            return host;
+        }
     }
 
     private static void emit(ProgressListener listener, long traceStart, String line) {
